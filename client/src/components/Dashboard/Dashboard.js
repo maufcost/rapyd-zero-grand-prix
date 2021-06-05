@@ -6,6 +6,7 @@ import Header from '../Header/Header';
 
 import { IMAGE, VIDEO, CUSTOM, NATIVE,ROOT } from '../../utils';
 import Dog from '../../assets/dog.jpg';
+import ShoppingCart from '../../assets/shopping-cart.svg';
 
 import './Dashboard.css';
 
@@ -101,14 +102,13 @@ class Dashboard extends React.Component {
         this.setState({ selectedProduct: e.target.value });
     }
 
-    saveStore() {
-
-    }
+    saveStore() {}
 
     handleStoreImageSubmission(e) {
         const files = e.target.files;
         if (files && typeof files !== 'undefined' && files.length > 0) {
             const file = files[0];
+			this.setState({ storeProfileImage: file });
         }
     }
 
@@ -116,16 +116,13 @@ class Dashboard extends React.Component {
         const files = e.target.files;
         if (files && typeof files !== 'undefined' && files.length > 0) {
             const file = files[0];
+			this.setState({ storeBannerImage: file });
         }
     }
 
-    handleAddStoreImage() {
+    handleAddStoreImage() {}
 
-    }
-
-    handleAddStoreBanner() {
-
-    }
+    handleAddStoreBanner() {}
 
     // Generates a compact store link based on the user's store name.
     getStoreLink() {
@@ -216,6 +213,9 @@ class Dashboard extends React.Component {
                 )
             });
         }
+
+		console.log(this.state.user.store.storeBannerImage)
+		console.log(this.state.user.store.storeProfileImage)
 
         return (
             <div className='dashboard-container'>
@@ -330,7 +330,7 @@ class Dashboard extends React.Component {
                                     <div className='buttons'>
                                         <button className='btn-add-store-image' onClick={this.handleAddStoreImage}>
                                             {this.state.selectedImage ? (
-                                                <span>✔️ Profile image selected</span>
+                                                <span>✅ Profile image selected</span>
                                             ) : (
                                                 <span>Add store's profile image</span>
                                             )}
@@ -339,7 +339,7 @@ class Dashboard extends React.Component {
 
                                         <button className='btn-add-store-image' onClick={this.handleAddStoreBanner}>
                                             {this.state.selectedBanner ? (
-                                                <span>✔️ Banner selected</span>
+                                                <span>✅ Banner selected</span>
                                             ) : (
                                                 <span>Add store banner</span>
                                             )}
@@ -350,7 +350,7 @@ class Dashboard extends React.Component {
                                             onCopy={() => this.setState({ copied: true })}>
                                             <button>
                                                 {this.state.copied ? (
-                                                    <span>✔️ Store link copied</span>
+                                                    <span>✅ Store link copied</span>
                                                 ) : (
                                                     <span>Get store link</span>
                                                 )}
@@ -363,7 +363,10 @@ class Dashboard extends React.Component {
                             </header>
                             <main>
                                 <div className='store-main-left'>
-                                    <select onChange={this.handleProductSelection}>{options}</select>
+									<div className='store-main-left-top'>
+                                    	<select onChange={this.handleProductSelection}>{options}</select>
+										<img className='cart' src={ShoppingCart} alt='Shopping cart' />
+									</div>
                                     <div className='product'>
                                         <h4>{this.state.user.store.products[this.state.selectedProduct].displayName}</h4>
                                         <p className='description'>{this.state.user.store.products[this.state.selectedProduct].description}</p>

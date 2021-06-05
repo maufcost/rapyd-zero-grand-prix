@@ -2,7 +2,7 @@
 
 :root {
     --br: 12px;
-    --bg: #f7f7f7;
+    --bg: #fafafa;
     --db: #0065ff;
     --db-dark: #034dbe;
     --grey: #c9c9c9;
@@ -29,4 +29,14 @@ p, h1, h2, h3, h4, h5, h6, ul, li {
 
 input, textarea {
     font-family: 'Lato', sans-serif;
+}
+
+.store-main-left-top {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+
+.store-main-left-top img {
+	width: 20px;
 }

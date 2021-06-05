@@ -5,6 +5,7 @@ import { navigate } from '@reach/router';
 
 import { IMAGE, VIDEO, CUSTOM, NATIVE } from '../../utils';
 import Dog from '../../assets/dog.jpg';
+import ShoppingCart from '../../assets/shopping-cart.svg';
 
 import './Checkout.css';
 
@@ -62,11 +63,16 @@ class Checkout extends React.Component {
         this.processPurchase = this.processPurchase.bind(this);
         this.fromDollarToBTC = this.fromDollarToBTC.bind(this);
         this.fromDollarToETH = this.fromDollarToETH.bind(this);
+		this.handleProductSelection = this.handleProductSelection.bind(this);
         this.handlePaymentCurrencyChange = this.handlePaymentCurrencyChange.bind(this);
     }
 
     componentDidMount() {
         this.setState({ loading: false });
+    }
+
+	handleProductSelection(e) {
+        this.setState({ selectedProduct: e.target.value });
     }
 
     // Sending a purchase request to our node.js server.
@@ -83,10 +89,13 @@ class Checkout extends React.Component {
 
         // The amount is sent based on the selected payment currency type.
         // If BTC selected, then the amount sent will be in BTC
-        await axios.post('http://localhost:5000/payment', {
+        await axios.get('http://localhost:5000/payment', {
             paymentCurrency: this.state.paymentCurrency,
             amount
-        });
+        })
+		.then(res => {
+			console.log(res);
+		});
 
         // this.setState({ loading: false });
         // Redirecting user to success page with data about the purchased product
@@ -183,7 +192,10 @@ class Checkout extends React.Component {
                     </header>
                     <main>
                         <div className='store-main-left'>
-                            <select onChange={this.handleProductSelection}>{options}</select>
+							<div className='store-main-left-top'>
+                            	<select onChange={this.handleProductSelection}>{options}</select>
+								<img className='cart' src={ShoppingCart} alt='Shopping cart' />
+							</div>
                             <div className='product'>
                                 <h4>{this.state.user.store.products[this.state.selectedProduct].displayName}</h4>
                                 <p className='description'>{this.state.user.store.products[this.state.selectedProduct].description}</p>
