@@ -1,0 +1,32 @@
+.header-container {
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 auto;
+	padding: 25px 0;
+	width: 85%;
+}
+
+.header .nav {
+	display: flex;
+	align-items: center;
+}
+
+.header .nav button {
+	transition: 0.2;
+	border: none;
+	background: transparent;
+	color: var(--db);
+	margin-left: 40px;
+	font-weight: 600;
+}
+
+.header .nav button:hover {
+	cursor: pointer;
+	transition: 0.2;
+	opacity: 0.8;
+}
