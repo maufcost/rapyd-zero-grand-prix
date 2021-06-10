@@ -298,3 +298,11 @@ input#add-product-price {
 	cursor: pointer;
 	transition: 0.2s;
 }
+
+.dashboard .disburse {
+	padding: 20px;
+}
+
+.dashboard .disburse h2 {
+	font-weight: 900;
+}

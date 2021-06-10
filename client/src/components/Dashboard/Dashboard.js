@@ -83,6 +83,7 @@ class Dashboard extends React.Component {
 
         this.saveStore = this.saveStore.bind(this);
         this.getStoreLink = this.getStoreLink.bind(this);
+		this.transferMoney = this.transferMoney.bind(this);
         this.fromDollarToBTC = this.fromDollarToBTC.bind(this);
         this.fromDollarToETH = this.fromDollarToETH.bind(this);
         this.addProductToStore = this.addProductToStore.bind(this);
@@ -188,6 +189,10 @@ class Dashboard extends React.Component {
             // Native currency ($ -> USD)
         }
     }
+
+	transferMoney() {
+
+	}
 
     render() {
         // Creating the <option>s for the store.
@@ -441,6 +446,14 @@ class Dashboard extends React.Component {
                                 </div>
                             </main>
                         </div>
+						<div className='disburse'>
+							<h2>Disburse now</h2>
+							<p>Register your bank account and transfer money from your Rapyd Now dashboard to it.</p>
+							<div>
+								{/* Waiting for Nathan (any inputs/styling/data needed from the front-end will come from here) */}
+								<button onClick={this.transferMoney}>Transfer</button>
+							</div>
+						</div>
                     </div>
                 </div>
             </div>
