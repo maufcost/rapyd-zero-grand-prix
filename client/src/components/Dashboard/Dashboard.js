@@ -231,28 +231,31 @@ class Dashboard extends React.Component {
 
                     {/* Shows a brief greeting + user balances */}
                     <div className='greetings'>
-                        <h2>Welcome back {this.state.user.displayName}! 👋</h2>
-                        <h3>Your current balance is:</h3>
+                        <h2 className='welcome'>Welcome back 👋</h2>
+						<h2 className='name'>{this.state.user.displayName}</h2>
                         <div className='balances'>
-                            <div className='balance'>
-                                <span>Your native currency (USD)</span>
-                                <p>${parseInt(this.state.user.balanceNative).toFixed(2)}</p>
-                            </div>
-                            <div className='balance'>
-                                <span>Bitcoin balance (BTC)</span>
-                                <p>BTC {this.state.user.balanceBTC}</p>
-                            </div>
-                            <div className='balance'>
-                                <span>Ether balance (ETH)</span>
-                                <p>ETH {this.state.user.balanceETH}</p>
-                            </div>
+							<h3>Your store balance is:</h3>
+							<section>
+	                            <div className='balance'>
+	                                <span>Your native currency <span className='curr'>USD</span></span>
+	                                <p>${parseInt(this.state.user.balanceNative).toFixed(2)}</p>
+	                            </div>
+	                            <div className='balance'>
+	                                <span>Bitcoin balance <span className='curr'>BTC</span></span>
+	                                <p>BTC {this.state.user.balanceBTC}</p>
+	                            </div>
+	                            <div className='balance'>
+	                                <span>Ether balance <span className='curr'>ETH</span></span>
+	                                <p>ETH {this.state.user.balanceETH}</p>
+	                            </div>
+							</section>
                         </div>
                     </div>
 
                     {/* Space to edit user's store and add products to the store */}
                     <div className='edit'>
                         <div className='products-added'>
-                            <h2>Add new products to your stores and your customers will see them instantaneously</h2>
+                            <h2>Add new products to your store in real-time</h2>
 
                             {this.state.openAddNewProductSection ? (
                                 <section className='add-products-section'>
@@ -435,7 +438,7 @@ class Dashboard extends React.Component {
                                                 <span>Loading...</span>
                                             ) : (
                                                 <span>
-                                                    Pay {this.state.paymentCurrency}&nbsp;
+                                                    💰 &nbsp;Pay {this.state.paymentCurrency}&nbsp;
                                                     {this.state.paymentCurrency === '$' && parseInt(this.state.user.store.products[this.state.selectedProduct].price).toFixed(2)}
                                                     {this.state.paymentCurrency === 'BTC' && this.state.currentDollarToBTCPrice}
                                                     {this.state.paymentCurrency === 'ETH' && this.state.currentDollarToETHPrice}
@@ -448,10 +451,10 @@ class Dashboard extends React.Component {
                         </div>
 						<div className='disburse'>
 							<h2>Disburse now</h2>
-							<p>Register your bank account and transfer money from your Rapyd Now dashboard to it.</p>
+							<p>Register your bank account and transfer money from your store balance.</p>
 							<div>
 								{/* Waiting for Nathan (any inputs/styling/data needed from the front-end will come from here) */}
-								<button onClick={this.transferMoney}>Transfer</button>
+								<button className='transfer-btn' onClick={this.transferMoney}>Transfer</button>
 							</div>
 						</div>
                     </div>

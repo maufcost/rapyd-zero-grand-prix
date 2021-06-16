@@ -1,5 +1,8 @@
 import React from 'react';
 import { navigate } from '@reach/router';
+
+import DefaultUser from '../../assets/default-user.png';
+
 import './Header.css';
 
 class Header extends React.Component {
@@ -9,8 +12,14 @@ class Header extends React.Component {
                 <div className='header'>
                     <img src={null} className='logo' alt='Rapyd X' />
                     <div className='nav'>
-                        <button onClick={() => navigate('/')}>Home</button>
-                        <button onClick={() => window.open(this.props.storeLink)}>Preview My Store</button>
+                        <button id='home-btn' onClick={() => navigate('/')}>Home</button>
+                        <button
+							className='special'
+							onClick={() => window.open(this.props.storeLink)}
+						>
+							<img src={DefaultUser} className='user-pic' alt='User' />
+							Preview My Store
+						</button>
                         <button onClick={() => navigate('/see-you-soon')}>Sign out</button>
                     </div>
                 </div>

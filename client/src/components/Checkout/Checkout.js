@@ -4,6 +4,7 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 
 import { IMAGE, VIDEO, CUSTOM, NATIVE } from '../../utils';
+import DefaultUser from '../../assets/default-user.png';
 import Dog from '../../assets/dog.jpg';
 import ShoppingCart from '../../assets/shopping-cart.svg';
 
@@ -187,7 +188,10 @@ class Checkout extends React.Component {
                         )}
 
                         <footer className='header-footer-checkout'>
-                            <h2 className='store-display-name-checkout'>{this.state.user.store.displayName}</h2>
+                            <h2 className='store-display-name-checkout'>
+								{this.state.user.store.displayName}
+							</h2>
+							<span>Created by <img src={DefaultUser} className='user-pic' alt='User' /> Mauricio Costa</span>
                         </footer>
                     </header>
                     <main>
@@ -281,7 +285,7 @@ class Checkout extends React.Component {
                                     <span>Loading...</span>
                                 ) : (
                                     <span>
-                                        Pay {this.state.paymentCurrency}&nbsp;
+                                        💰 &nbsp;Pay {this.state.paymentCurrency}&nbsp;
                                         {this.state.paymentCurrency === '$' && parseInt(this.state.user.store.products[this.state.selectedProduct].price).toFixed(2)}
                                         {this.state.paymentCurrency === 'BTC' && this.state.currentDollarToBTCPrice}
                                         {this.state.paymentCurrency === 'ETH' && this.state.currentDollarToETHPrice}
