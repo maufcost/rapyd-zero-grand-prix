@@ -98,13 +98,18 @@ class Checkout extends React.Component {
 
         // The amount is sent based on the selected payment currency type.
         // If BTC selected, then the amount sent will be in BTC
-        await axios.get('http://localhost:5000/payment', {
+        await axios.get('http://localhost:5000/rapyd-test', {
             paymentCurrency: this.state.paymentCurrency,
             amount
         })
 		.then(res => {
 			console.log(res);
 		});
+
+		// @WARNING: For testing purposes only:
+		// setTimeout(() => {
+		// 	navigate('https://sandboxcheckout.rapyd.net?token=checkout_0e110b8b10eec1b311377888cf3f229d')
+		// }, 3000);
 
         // this.setState({ loadingPay: false });
         // Redirecting user to success page with data about the purchased product
@@ -238,6 +243,7 @@ class Checkout extends React.Component {
                                 value={this.state.email}
                                 onChange={(e) => this.setState({ email: e.target.value })}
                                 disabled={this.state.loading}
+								autoComplete='off'
                             />
                             {this.state.paymentCurrency !== '$' && (
                                 <div className='pk-input-wrapper' style={{ marginTop: '8px' }}>
@@ -249,6 +255,7 @@ class Checkout extends React.Component {
                                         value={this.state.pk}
                                         onChange={(e) => this.setState({ pk: e.target.value })}
                                         disabled={this.state.loading}
+										autoComplete='off'
                                     />
                                 </div>
                             )}

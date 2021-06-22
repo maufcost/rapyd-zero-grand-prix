@@ -45,7 +45,7 @@ class Dashboard extends React.Component {
             user: {
                 email: 'michaelscott@dundermifflin.com',
                 displayName: 'Mauricio Costa',
-                balanceNative: 100,
+                balanceNative: 131.92,
                 balanceBTC: 0.00001,
                 balanceETH: 0.000025,
                 store: {
@@ -92,6 +92,7 @@ class Dashboard extends React.Component {
             currentDollarToETHPrice: null
         };
 
+		this.closeAdd = this.closeAdd.bind(this);
         this.saveStore = this.saveStore.bind(this);
         this.getStoreLink = this.getStoreLink.bind(this);
 		this.transferMoney = this.transferMoney.bind(this);
@@ -135,6 +136,10 @@ class Dashboard extends React.Component {
     handleAddStoreImage() {}
 
     handleAddStoreBanner() {}
+
+	closeAdd() {
+		this.setState({ openAddNewProductSection: false });
+	}
 
     // Generates a compact store link based on the user's store name.
     getStoreLink() {
@@ -183,6 +188,10 @@ class Dashboard extends React.Component {
                     store: { ...this.state.user.store, products },
                     ...this.state.user
                 },
+				addProductName: '',
+				addProductDescription: '',
+				addProductPrice: 0,
+				openAddNewProductSection: false
             });
         }
     }
@@ -284,7 +293,7 @@ class Dashboard extends React.Component {
                                 <section className='add-products-section'>
                                     <button
                                         className='close-btn'
-                                        onClick={() => this.setState({ openAddNewProductSection: false })}
+                                        onClick={this.closeAdd}
                                     >
                                         Close
                                     </button>
@@ -296,6 +305,7 @@ class Dashboard extends React.Component {
                                         value={this.state.addProductName}
                                         onChange={e => this.setState({ addProductName: e.target.value })}
                                         placeholder='Cat Box Pro 2000'
+										autoComplete='off'
                                     ></input>
 
                                     <label htmlFor='add-product-description'>Description: </label>
@@ -305,6 +315,7 @@ class Dashboard extends React.Component {
                                         value={this.state.addProductDescription}
                                         onChange={e => this.setState({ addProductDescription: e.target.value })}
                                         placeholder='The only one you will ever need'
+										autoComplete='off'
                                     ></input>
 
                                     <label htmlFor='add-product-price'>Price $</label>
@@ -314,6 +325,7 @@ class Dashboard extends React.Component {
                                         value={this.state.addProductPrice}
                                         onChange={e => this.setState({ addProductPrice: e.target.value })}
                                         min='1'
+										autoComplete='off'
                                     ></input>
 									<button className='add-product-btn' onClick={this.handleAddStoreImage}>Add product image </button>
                                     <button className='add-product-btn' onClick={this.addProductToStore}>🤘 Add product</button>
@@ -426,6 +438,7 @@ class Dashboard extends React.Component {
                                         type='text'
                                         placeholder='E.g. michaelscott@dundermifflin.com'
                                         disabled
+										autoComplete='off'
                                     />
                                     {/* Credit card part -- waiting to have access to Rapyd */}
                                     <div className='payment-types'>
@@ -482,6 +495,7 @@ class Dashboard extends React.Component {
 										value={this.state.bankAccountNumber}
 										type='text'
 										onChange={e => this.setState({ bankAccountNumber: e.target.value })}
+										autoComplete='off'
 									/>
 								</div>
 								<div>
@@ -490,6 +504,7 @@ class Dashboard extends React.Component {
 										value={this.state.rapydWalletNumber}
 										type='text'
 										onChange={e => this.setState({ rapydWalletNumber: e.target.value })}
+										autoComplete='off'
 									/>
 									<small>Don't worry! We automatically generated one for you.</small>
 								</div>
@@ -499,6 +514,7 @@ class Dashboard extends React.Component {
 										value={this.state.transferAmount}
 										type='text'
 										onChange={e => this.setState({ transferAmount: e.target.value })}
+										autoComplete='off'
 									/>
 								</div>
 								<button

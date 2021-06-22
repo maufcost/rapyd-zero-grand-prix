@@ -17,8 +17,8 @@ var url = base_url + url_path;
 var salt = CryptoJS.lib.WordArray.random(12);  // Randomly generated for each request.
 var timestamp = (Math.floor(new Date().getTime() / 1000) - 10).toString();
  // Current Unix time.
-var access_key = process.env.RAPYD_ACCESS_KEY;     // The access key received from Rapyd.
-var secret_key = process.env.RAPYD_SECRET_KEY;   // Never transmit the secret key by itself.
+var access_key = '92B798D8E31458D5427E'//process.env.RAPYD_ACCESS_KEY;     // The access key received from Rapyd.
+var secret_key = '8a4bf757f75f6131af7a40a976a12898355cd0d6ee055bfd4451fd97c2ae3d38226629c728c30bae'//process.env.RAPYD_SECRET_KEY;   // Never transmit the secret key by itself.
 
 var body = {
 	// 'amount': 99.99, // Remove 'amount' property if you provide a 'cart_items' prop.
@@ -27,9 +27,9 @@ var body = {
 	'complete_checkout_url': 'https://google.com',
 	'cart_items': [
 		{
-			'name': 'that naaaaame',
-			'amount': 19.12,
-			'image': '',
+			'name': 'Test Product Name',
+			'amount': 19.92,
+			'image': 'Test image url',
 			'quantity': 1
 		}
 	]
@@ -79,7 +79,9 @@ app.get('/rapyd-test', (req, res) => {
 
 	    console.log(response);
 		console.log(response.data);
-		console.log(response.data.redirect_url);
+		console.log(response.data.data);
+		console.log(response.data.data.redirect_url);
+		return response.data.data.redirect_url;
 	  })
 	  .catch(function (error) {
 	    // handle error

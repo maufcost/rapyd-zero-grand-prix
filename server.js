@@ -26,9 +26,9 @@ var body = {
 	'complete_checkout_url': 'http://localhost:3000/success',
 	'cart_items': [
 		{
-			'name': 'that naaaaame',
-			'amount': 19.12,
-			'image': '',
+			'name': 'Cinnamon Arabic Beans',
+			'amount': 35,
+			'image': 'https://firebasestorage.googleapis.com/v0/b/skill-evolution-3e59c.appspot.com/o/coffee2.jpeg?alt=media&token=c211afce-4d93-4aa6-bc70-0f9eeaf5ece6',
 			'quantity': 1
 		}
 	]
@@ -38,17 +38,6 @@ var body = {
 const signatureKey = httpMethod + urlPath + salt + timestamp + accessKey + secretKey + JSON.stringify(body);
 let signature = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA256(signatureKey, secretKey));
 signature = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(signature));
-
-// Creating a special Axios instance to add custom request headers.
-const instance = axios.create({
-	headers: {
-		'access_key': accessKey,
-		'content-Type': 'application/json',
-		'salt': salt,
-		'signature': signature,
-		'timestamp': timestamp
-	}
-});
 
 // Uncomment to test if your env vars are set up correctly:
 // console.log(urlPath)
@@ -121,6 +110,17 @@ const processRapydPayment = (xxx) => {
 	// 	'complete_checkout_url': 'https://google.com'
 	// }
 
+	// Creating a special Axios instance to add custom request headers.
+	const instance = axios.create({
+		headers: {
+			'access_key': accessKey,
+			'content-Type': 'application/json',
+			'salt': salt,
+			'signature': signature,
+			'timestamp': timestamp
+		}
+	});
+
 	// Stringifying our request body
 	if (JSON.stringify(body) !== '{}' && body !== '') {
 	    reqBody = JSON.stringify(body);
@@ -139,23 +139,24 @@ const processRapydPayment = (xxx) => {
 	})
 }
 
-// Routes
 app.get('/disburse', async (req, res) => {
 	// Props: bankAccount, transferAmount, walletSender (valid rapyd wallet)
 	console.log(req.body);
-	
+
 	// Comment the following and uncomment the other one
 	var bankAccount = "BG96611020345678";
 	var transferAmount = "2";
 	var walletSender = "ewallet_dfc659569155e576aad8d8cc334ed22e";
-	
+
 	// Uncomment to use data from the request
-	
+
 	//var transferAmount = req.body .transferAmount;
 	//var bankAccount = req.body.bankAccount;
 	//var walletSender = req.body.walletSender;
-	
+
 	// Data of the person receiving the money from the store wallet
+	// @ATTENTION: Actual sensitive data omitted from repository since it includes
+	// client/business name, bank, and card information.
 	var receiver = {
 					"name":"Nathan Wilk",
 					"address": "123 Nathan Mauricio Street",
@@ -171,7 +172,7 @@ app.get('/disburse', async (req, res) => {
 					"bic_swift": "BUINBGSF",
 					"ach_code": "123456789"
 	};
-	
+
 	// Data Object of the person sending the money
 	var sender = {
 					"name":"Nathan Wilk 2",
@@ -189,7 +190,7 @@ app.get('/disburse', async (req, res) => {
 					"account_number": "123456789",
 					"beneficiary_relationship": "client" // The "store" is sending money to the owner
 	}
-	
+
 	// Body request
 	var data = JSON.stringify({
 								"beneficiary": receiver,
@@ -210,29 +211,29 @@ app.get('/disburse', async (req, res) => {
 									"merchant_defined": true
 								 }
 	});
-	
+
 	let url = baseURL + '/v1/payouts';
 	let the_salt = CryptoJS.lib.WordArray.random(12);
 	let the_time = (Math.floor(new Date().getTime() / 1000) - 10).toString();
-	
+
 	let signed = httpMethod + url + the_salt + the_time + accessKey + secretKey + JSON.stringify(data);
 	let le_sign = CryptoJS.enc.Hex.stringify(CryptoJS.HmacSHA256(signed, secretKey));
 	le_sign = CryptoJS.enc.Base64.stringify(CryptoJS.enc.Utf8.parse(le_sign));
-	
-	
+
+
 	var config = {
 	  method: 'post',
 	  url: 'https://sandboxapi.rapyd.net/v1/payouts',
-	  headers: { 
-		'Content-Type': 'application/json', 
-		'access_key': accessKey, 
-		'salt': the_salt, 
-		'timestamp': the_time, 
+	  headers: {
+		'Content-Type': 'application/json',
+		'access_key': accessKey,
+		'salt': the_salt,
+		'timestamp': the_time,
 		'signature': le_sign
 	  },
 	  data : data
 	};
-	
+
 	axios(config)
 	.then(function (response) {
 	  console.log(JSON.stringify(response.data));
@@ -240,7 +241,7 @@ app.get('/disburse', async (req, res) => {
 	.catch(function (error) {
 	  console.log(error);
 	});
-	
+
 });
 
 
