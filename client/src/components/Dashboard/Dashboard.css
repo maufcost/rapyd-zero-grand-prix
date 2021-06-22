@@ -1,17 +1,19 @@
 .dashboard {
 	width: 90%;
 	margin: 0 auto;
+
 }
 
 .dashboard .greetings {
 	background-color: #fff;
 	border-radius: var(--br);
 	padding: 20px;
+	box-shadow: 0 0 4px var(--grey);
 	transition: 0.2s;
 }
 
 .dashboard .greetings:hover {
-	box-shadow: 0 0 4px var(--grey);
+	box-shadow: 0 0 10px var(--grey);
 	transition: 0.2s;
 }
 
@@ -39,6 +41,7 @@
 	background-size: cover;
 	border-radius: 15px;
 	padding: 10px;
+	width: 100%;
 }
 
 .dashboard .greetings .balances section {
@@ -124,6 +127,10 @@
 	transition: 0.2s;
 }
 
+.add-product-btn {
+	margin-right: 10px;
+}
+
 .dashboard .products-added label {
 	font-size: 0.9em;
 }
@@ -183,6 +190,8 @@ input#add-product-price {
 	/* If any */
 	width: 100%;
 	height: auto;
+	display: inline-block;
+	margin-top: -270px;
 }
 
 .dashboard .edit .store header .circle {
@@ -300,7 +309,7 @@ input#add-product-price {
 
 .dashboard .edit .store main .store-main-left .product img {
 	border-radius: 8px;
-	width: 200px;
+	width: 300px;
 	height: auto;
 	margin-top: 15px;
 }
@@ -353,6 +362,10 @@ input#add-product-price {
 
 .dashboard .disburse {
 	padding: 20px;
+	background: url('../../assets/footer.svg');
+	background-repeat: no-repeat;
+	background-size: 520px;
+	background-position: 100% 100%;
 }
 
 .dashboard .disburse h2 {
@@ -378,9 +391,69 @@ input#add-product-price {
 	transition: 0.2s;
 }
 
+.greetings-main {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* background-color: gold; */
+	gap: 0;
+}
+
+.disburse section {
+	margin: 30px 0 50px 0;
+}
+
+.disburse label {
+	display: inline-block;
+	width: 10em;
+	color: #858383;
+	font-size: 0.9em;
+}
+
+.disburse section div {
+	margin: 10px 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.disburse section input {
+	border-radius: 10px;
+	border: 1px solid var(--placeholder);
+	padding: 8px 16px;
+	display: inline-block;
+	width: 20em;
+}
+
+.disburse section small {
+	font-size: 0.7em;
+	color: #858383;
+	border: 1px solid #858383;
+	border-radius: 20px;
+	padding: 3px 12px;
+}
+
+.lg {
+	width: 50px;
+	animation: rotation 0.6s infinite linear;
+}
+
+.loading-container {
+	display: block;
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
 @media only screen and (max-width: 400px) {
 	body {
-		background-color: gold;
+		/* background-color: gold; */
 	}
 
 	.dashboard .edit .store main {
@@ -399,5 +472,13 @@ input#add-product-price {
 
 	.dashboard .greetings .balances section {
 		display: block;
+	}
+
+
+	.greetings-main {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
 	}
 }

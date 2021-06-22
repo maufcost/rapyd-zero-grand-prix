@@ -1,6 +1,7 @@
 import React from 'react';
 import { navigate } from '@reach/router';
 
+import RapydZeroLogo from '../../assets/rzero.svg';
 import DefaultUser from '../../assets/default-user.png';
 
 import './Header.css';
@@ -10,7 +11,7 @@ class Header extends React.Component {
         return (
             <div className='header-container'>
                 <div className='header'>
-                    <img src={null} className='logo' alt='Rapyd X' />
+                    <img src={RapydZeroLogo} className='logo' alt='Rapyd X' />
                     <div className='nav'>
                         <button id='home-btn' onClick={() => navigate('/')}>Home</button>
                         <button

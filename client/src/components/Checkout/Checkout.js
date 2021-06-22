@@ -4,9 +4,15 @@ import axios from 'axios';
 import { navigate } from '@reach/router';
 
 import { IMAGE, VIDEO, CUSTOM, NATIVE } from '../../utils';
+import DefaultStoreImage from '../../assets/me.gif';
+import DefaultStoreBanner from '../../assets/arabic-coffee-banner.jpeg';
+import DefaultProd from '../../assets/coffee-prod.gif';
+import DefaultProd2 from '../../assets/coffee2.jpeg';
+import DefaultProd3 from '../../assets/coffee3.png'
 import DefaultUser from '../../assets/default-user.png';
-import Dog from '../../assets/dog.jpg';
 import ShoppingCart from '../../assets/shopping-cart.svg';
+import Loading from '../Loading/Loading';
+import RapydZeroLogo from '../../assets/rzero.svg';
 
 import './Checkout.css';
 
@@ -26,37 +32,39 @@ class Checkout extends React.Component {
                 balanceBTC: 0.00001,
                 balanceETH: 0.000025,
                 store: {
-                    displayName: 'Pet my Pet Clothes',
-                    storeProfileImage: Dog,
+                    displayName: 'Arabic Coffee by MC',
+                    storeProfileImage: DefaultStoreImage,
                     storeProfileImageType: IMAGE,
-                    storeBannerImage: Dog,
+                    storeBannerImage: DefaultStoreBanner,
                     storeProfileVideo: null,
-                    products: [
+					products: [
                         {
-                            price: 123.45,
-                            displayName: 'Product 1',
-                            description: 'A description 1',
-                            image: Dog
+                            price: 25.00,
+                            displayName: 'Hazelnut Arabic Beans',
+                            description: 'Taste it and be your best self ☕',
+                            image: DefaultProd
                         },
                         {
-                            price: 456.45,
-                            displayName: 'Product 2',
-                            description: 'A description 2',
-                            image: Dog
+                            price: 35.45,
+                            displayName: 'Cinnamon Arabic Beans',
+                            description: 'Just the right amount of cinnamon and sugar 👨‍🍳 ☕',
+                            image: DefaultProd2
                         },
                         {
-                            price: 789.99,
-                            displayName: 'Product 3',
-                            description: 'A description 3',
-                            image: Dog
+                            price: 19.99,
+                            displayName: 'Original Arabic Beans',
+                            description: 'Going traditional is always a great idea ☕',
+                            image: DefaultProd3
                         }
                     ]
                 }
             },
             email: '',
             pk: '',
+			paymentSuccessful: false,
             selectedProduct: 0,
             loading: true,
+			loadingPay: false,
             currentDollarToBTCPrice: null,
             currentDollarToETHPrice: null
         };
@@ -79,7 +87,7 @@ class Checkout extends React.Component {
     // Sending a purchase request to our node.js server.
     async processPurchase(e) {
         e.preventDefault();
-        this.setState({ loading: true });
+        this.setState({ loadingPay: true });
 
         let amount = this.state.user.store.products[this.state.selectedProduct].price // In native currency (USD)
         if (this.state.paymentCurrency === 'BTC') {
@@ -98,7 +106,7 @@ class Checkout extends React.Component {
 			console.log(res);
 		});
 
-        // this.setState({ loading: false });
+        // this.setState({ loadingPay: false });
         // Redirecting user to success page with data about the purchased product
         // and its store.
         navigate('/success', {
@@ -107,8 +115,8 @@ class Checkout extends React.Component {
                 product: this.state.user.store.products[this.state.selectedProduct],
                 paymentCurrency: this.state.paymentCurrency,
                 amount,
-                storeProfileImage: Dog,
-                storeBanner: Dog,
+                storeProfileImage: DefaultStoreImage,
+                storeBanner: DefaultStoreBanner,
                 pk: this.state.pk
             }
         })
@@ -205,7 +213,7 @@ class Checkout extends React.Component {
                                 <p className='description'>{this.state.user.store.products[this.state.selectedProduct].description}</p>
                                 <p className='price'>
                                     {this.state.loading ? (
-                                        <span>Loading...</span>
+                                        <Loading />
                                     ) : (
                                         <span>
                                             {this.state.paymentCurrency}&nbsp;
@@ -217,9 +225,9 @@ class Checkout extends React.Component {
                                 </p>
                                 <img src={this.state.user.store.products[this.state.selectedProduct].image} alt='Product'/>
                             </div>
-                            <footer>
-                                <p>Powered by Rapyd X</p>
-                            </footer>
+							<footer className='powered'>
+								<p>Powered by <img src={RapydZeroLogo} alt='Rapyd'/></p>
+							</footer>
                         </div>
                         <div className='store-main-right'>
                             <label htmlFor='email'>Email</label>
@@ -281,11 +289,11 @@ class Checkout extends React.Component {
                                     onClick={this.processPurchase}
                                     disabled={this.state.loading}
                                 >
-                                {this.state.loading ? (
-                                    <span>Loading...</span>
+                                {this.state.loadingPay ? (
+                                    <Loading />
                                 ) : (
                                     <span>
-                                        💰 &nbsp;Pay {this.state.paymentCurrency}&nbsp;
+                                        <span id='emoji'>💰</span> &nbsp;Pay {this.state.paymentCurrency}&nbsp;
                                         {this.state.paymentCurrency === '$' && parseInt(this.state.user.store.products[this.state.selectedProduct].price).toFixed(2)}
                                         {this.state.paymentCurrency === 'BTC' && this.state.currentDollarToBTCPrice}
                                         {this.state.paymentCurrency === 'ETH' && this.state.currentDollarToETHPrice}

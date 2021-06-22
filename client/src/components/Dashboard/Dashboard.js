@@ -3,10 +3,17 @@ import Price from 'crypto-price';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 
 import Header from '../Header/Header';
+import Stats from '../Stats/Stats';
+import Loading from '../Loading/Loading';
 
-import { IMAGE, VIDEO, CUSTOM, NATIVE,ROOT } from '../../utils';
-import Dog from '../../assets/dog.jpg';
+import { IMAGE, VIDEO, CUSTOM, NATIVE, ROOT } from '../../utils';
+import DefaultStoreImage from '../../assets/me.gif';
+import DefaultStoreBanner from '../../assets/arabic-coffee-banner.jpeg';
+import DefaultProd from '../../assets/coffee-prod.gif';
+import DefaultProd2 from '../../assets/coffee2.jpeg';
+import DefaultProd3 from '../../assets/coffee3.png'
 import ShoppingCart from '../../assets/shopping-cart.svg';
+import RapydZeroLogo from '../../assets/rzero.svg';
 
 import './Dashboard.css';
 
@@ -24,59 +31,63 @@ import './Dashboard.css';
 // Store products (to fill the options in the <select>)
 // Each store product should have a price, display name, description, and image
 
-// Do we need a component to add the products?
-
 class Dashboard extends React.Component {
     constructor(props) {
         super(props);
 
         // this.state = {};
 
+		// Mock store
         this.state = {
             paymentCurrency: '$', // By default
             selectedImage: null,
             selectedBanner: null,
             user: {
                 email: 'michaelscott@dundermifflin.com',
-                displayName: 'Michael Scott',
+                displayName: 'Mauricio Costa',
                 balanceNative: 100,
                 balanceBTC: 0.00001,
                 balanceETH: 0.000025,
                 store: {
-                    displayName: 'Pet my Pet Clothes',
-                    storeProfileImage: Dog,
+                    displayName: 'Arabic Coffee by MC',
+                    storeProfileImage: DefaultStoreImage,
                     storeProfileImageType: IMAGE,
-                    storeBannerImage: Dog,
+                    storeBannerImage: DefaultStoreBanner,
                     storeProfileVideo: null,
                     products: [
                         {
-                            price: 123.45,
-                            displayName: 'Product 1',
-                            description: 'A description 1',
-                            image: Dog
+                            price: 25.00,
+                            displayName: 'Hazelnut Arabic Beans',
+                            description: 'Taste it and be your best self ☕',
+                            image: DefaultProd
                         },
                         {
-                            price: 456.45,
-                            displayName: 'Product 2',
-                            description: 'A description 2',
-                            image: Dog
+                            price: 35.45,
+                            displayName: 'Cinnamon Arabic Beans',
+                            description: 'Just the right amount of cinnamon and sugar 👨‍🍳 ☕',
+                            image: DefaultProd2
                         },
                         {
-                            price: 789.99,
-                            displayName: 'Product 3',
-                            description: 'A description 3',
-                            image: Dog
+                            price: 19.99,
+                            displayName: 'Original Arabic Beans',
+                            description: 'Going traditional is always a great idea ☕',
+                            image: DefaultProd3
                         }
                     ]
                 }
             },
             selectedProduct: 0,
             loading: true,
+			loadingDisburse: false,
+			transferSuccess: false,
             openAddNewProductSection: false,
             addProductName: '',
             addProductDescription: '',
             addProductPrice: 1,
             copied: false,
+			bankAccountNumber: '',
+			rapydWalletNumber: '',
+			transferAmount: '',
             currentDollarToBTCPrice: null,
             currentDollarToETHPrice: null
         };
@@ -165,7 +176,7 @@ class Dashboard extends React.Component {
                 price: this.state.addProductPrice,
                 displayName: this.state.addProductName.trim(),
                 description: this.state.addProductDescription.trim(),
-                image: Dog
+                image: DefaultProd
             });
             this.setState({
                 user: {
@@ -191,7 +202,16 @@ class Dashboard extends React.Component {
     }
 
 	transferMoney() {
-
+		this.setState({ loadingDisburse: true });
+		setTimeout(() => {
+			this.setState({
+				loadingDisburse: false,
+				transferSuccess: true,
+				bankAccountNumber: '',
+				rapydWalletNumber: '',
+				transferAmount: ''
+			});
+		}, 3000);
 	}
 
     render() {
@@ -219,8 +239,8 @@ class Dashboard extends React.Component {
             });
         }
 
-		console.log(this.state.user.store.storeBannerImage)
-		console.log(this.state.user.store.storeProfileImage)
+		let transferBtnClassName = 'transfer-btn';
+		transferBtnClassName += this.state.transferSuccess ? ' dg' : '';
 
         return (
             <div className='dashboard-container'>
@@ -233,23 +253,26 @@ class Dashboard extends React.Component {
                     <div className='greetings'>
                         <h2 className='welcome'>Welcome back 👋</h2>
 						<h2 className='name'>{this.state.user.displayName}</h2>
-                        <div className='balances'>
-							<h3>Your store balance is:</h3>
-							<section>
-	                            <div className='balance'>
-	                                <span>Your native currency <span className='curr'>USD</span></span>
-	                                <p>${parseInt(this.state.user.balanceNative).toFixed(2)}</p>
-	                            </div>
-	                            <div className='balance'>
-	                                <span>Bitcoin balance <span className='curr'>BTC</span></span>
-	                                <p>BTC {this.state.user.balanceBTC}</p>
-	                            </div>
-	                            <div className='balance'>
-	                                <span>Ether balance <span className='curr'>ETH</span></span>
-	                                <p>ETH {this.state.user.balanceETH}</p>
-	                            </div>
-							</section>
-                        </div>
+						<main className='greetings-main'>
+	                        <div className='balances'>
+								<h3>Your store balance is:</h3>
+								<section>
+		                            <div className='balance'>
+		                                <span>Your native currency <span className='curr'>USD</span></span>
+		                                <p>${parseInt(this.state.user.balanceNative).toFixed(2)}</p>
+		                            </div>
+		                            <div className='balance'>
+		                                <span>Bitcoin balance <span className='curr'>BTC</span></span>
+		                                <p>BTC {this.state.user.balanceBTC}</p>
+		                            </div>
+		                            <div className='balance'>
+		                                <span>Ether balance <span className='curr'>ETH</span></span>
+		                                <p>ETH {this.state.user.balanceETH}</p>
+		                            </div>
+								</section>
+	                        </div>
+							<Stats />
+						</main>
                     </div>
 
                     {/* Space to edit user's store and add products to the store */}
@@ -292,8 +315,8 @@ class Dashboard extends React.Component {
                                         onChange={e => this.setState({ addProductPrice: e.target.value })}
                                         min='1'
                                     ></input>
-
-                                    <button className='add-product-btn' onClick={this.addProductToStore}>Add</button>
+									<button className='add-product-btn' onClick={this.handleAddStoreImage}>Add product image </button>
+                                    <button className='add-product-btn' onClick={this.addProductToStore}>🤘 Add product</button>
                                 </section>
                             ) : (
                                 <button onClick={() => this.setState({ openAddNewProductSection: true })}>Add a new product to my store</button>
@@ -380,7 +403,7 @@ class Dashboard extends React.Component {
                                         <p className='description'>{this.state.user.store.products[this.state.selectedProduct].description}</p>
                                         <p className='price'>
                                             {this.state.loading ? (
-                                                <span>Loading...</span>
+                                                <Loading />
                                             ) : (
                                                 <span>
                                                     {this.state.paymentCurrency}&nbsp;
@@ -392,8 +415,8 @@ class Dashboard extends React.Component {
                                         </p>
                                         <img src={this.state.user.store.products[this.state.selectedProduct].image} alt='Product'/>
                                     </div>
-                                    <footer>
-                                        <p>Powered by Rapyd X</p>
+                                    <footer className='powered'>
+                                        <p>Powered by <img src={RapydZeroLogo} alt='Rapyd'/></p>
                                     </footer>
                                 </div>
                                 <div className='store-main-right'>
@@ -435,7 +458,7 @@ class Dashboard extends React.Component {
                                         <label htmlFor='ETH'>ETH</label>
                                         <button className='pay-btn' onClick={e => e.preventDefault()}>
                                             {this.state.loading ? (
-                                                <span>Loading...</span>
+                                            	<Loading />
                                             ) : (
                                                 <span>
                                                     💰 &nbsp;Pay {this.state.paymentCurrency}&nbsp;
@@ -451,11 +474,50 @@ class Dashboard extends React.Component {
                         </div>
 						<div className='disburse'>
 							<h2>Disburse now</h2>
-							<p>Register your bank account and transfer money from your store balance.</p>
-							<div>
-								{/* Waiting for Nathan (any inputs/styling/data needed from the front-end will come from here) */}
-								<button className='transfer-btn' onClick={this.transferMoney}>Transfer</button>
-							</div>
+							<p>Register your bank account and transfer money from your Rapyd wallet and store balance.</p>
+							<section>
+								<div>
+									<label>Bank account #:</label>
+									<input
+										value={this.state.bankAccountNumber}
+										type='text'
+										onChange={e => this.setState({ bankAccountNumber: e.target.value })}
+									/>
+								</div>
+								<div>
+									<label>Rapyd wallet #:</label>
+									<input
+										value={this.state.rapydWalletNumber}
+										type='text'
+										onChange={e => this.setState({ rapydWalletNumber: e.target.value })}
+									/>
+									<small>Don't worry! We automatically generated one for you.</small>
+								</div>
+								<div>
+									<label>Amount:</label>
+									<input
+										value={this.state.transferAmount}
+										type='text'
+										onChange={e => this.setState({ transferAmount: e.target.value })}
+									/>
+								</div>
+								<button
+									className={transferBtnClassName}
+									onClick={this.transferMoney}
+								>
+									{this.state.loadingDisburse ? (
+										<Loading />
+									) : (
+										<p>
+											{this.state.transferSuccess ? (
+												<span>Transfer Succeeded ✅</span>
+											) : (
+												<span>Transfer</span>
+											)}
+										</p>
+									)}
+								</button>
+							</section>
 						</div>
                     </div>
                 </div>

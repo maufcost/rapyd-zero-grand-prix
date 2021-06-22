@@ -11,6 +11,10 @@
 	width: 85%;
 }
 
+.logo {
+	width: 150px;
+}
+
 .header .nav {
 	display: flex;
 	align-items: center;

@@ -183,6 +183,15 @@
 	transition: 0.2s;
 }
 
+.store-checkout main .store-main-right .pay-btn #emoji {
+	transition: 0.2s;
+}
+
+.store-checkout main .store-main-right .pay-btn:hover #emoji {
+	padding-right: 5.5px;
+	transition: 0.2s;
+}
+
 .store-checkout main .store-main-right .pay-btn {
 	color: #fff;
 	font-weight: bold;
