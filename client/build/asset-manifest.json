@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/static/css/main.fe4ae161.chunk.css",
+    "main.js": "/static/js/main.83379096.chunk.js",
+    "main.js.map": "/static/js/main.83379096.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.49e1d9d0.js",
+    "runtime-main.js.map": "/static/js/runtime-main.49e1d9d0.js.map",
+    "static/js/2.a96beeb3.chunk.js": "/static/js/2.a96beeb3.chunk.js",
+    "static/js/2.a96beeb3.chunk.js.map": "/static/js/2.a96beeb3.chunk.js.map",
+    "static/js/3.ff5d6c44.chunk.js": "/static/js/3.ff5d6c44.chunk.js",
+    "static/js/3.ff5d6c44.chunk.js.map": "/static/js/3.ff5d6c44.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.fe4ae161.chunk.css.map": "/static/css/main.fe4ae161.chunk.css.map",
+    "static/js/2.a96beeb3.chunk.js.LICENSE.txt": "/static/js/2.a96beeb3.chunk.js.LICENSE.txt",
+    "static/media/arabic-coffee-banner.5e52387e.jpeg": "/static/media/arabic-coffee-banner.5e52387e.jpeg",
+    "static/media/Dashboard.css": "/static/media/footer.6c2fb09e.svg",
+    "static/media/coffee-prod.a451a6a8.gif": "/static/media/coffee-prod.a451a6a8.gif",
+    "static/media/coffee2.3cb58225.jpeg": "/static/media/coffee2.3cb58225.jpeg",
+    "static/media/coffee3.06ecbca4.png": "/static/media/coffee3.06ecbca4.png",
+    "static/media/default-user.0cdde5f6.png": "/static/media/default-user.0cdde5f6.png",
+    "static/media/loading.7abb9f64.svg": "/static/media/loading.7abb9f64.svg",
+    "static/media/me.ee3262ef.gif": "/static/media/me.ee3262ef.gif",
+    "static/media/rzero.81e78d44.svg": "/static/media/rzero.81e78d44.svg",
+    "static/media/shopping-cart.b2512c95.svg": "/static/media/shopping-cart.b2512c95.svg"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.49e1d9d0.js",
+    "static/js/2.a96beeb3.chunk.js",
+    "static/css/main.fe4ae161.chunk.css",
+    "static/js/main.83379096.chunk.js"
+  ]
+}

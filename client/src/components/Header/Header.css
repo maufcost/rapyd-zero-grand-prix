@@ -1,0 +1,68 @@
+.header-container {
+	width: 100%;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	margin: 0 auto;
+	padding: 25px 0;
+	width: 85%;
+}
+
+.logo {
+	width: 150px;
+}
+
+.header .nav {
+	display: flex;
+	align-items: center;
+}
+
+.header .nav button {
+	transition: 0.2;
+	border: none;
+	background: transparent;
+	color: var(--db);
+	margin-left: 40px;
+	font-weight: 600;
+}
+
+.header .nav button:hover {
+	cursor: pointer;
+	transition: 0.2;
+	opacity: 0.8;
+}
+
+.header .nav button.special {
+	transition: 0.2s;
+	background-color: var(--db);
+	color: #fff;
+	padding: 6px 9px;
+	border-radius: 8px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.header .nav button.special:hover {
+	cursor: pointer;
+	transition: 0.2;
+	opacity: 0.8;
+	color: var(--db);
+	background-color: #fff;
+	box-shadow: 0 0 10px var(--grey);
+}
+
+.header .nav button.special .user-pic {
+	width: 25px;
+	border-radius: 50%;
+	margin-right: 5px;
+}
+
+@media only screen and (max-width: 400px) {
+	#home-btn {
+		display: none;
+	}
+}

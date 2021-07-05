@@ -1,0 +1,484 @@
+.dashboard {
+	width: 90%;
+	margin: 0 auto;
+
+}
+
+.dashboard .greetings {
+	background-color: #fff;
+	border-radius: var(--br);
+	padding: 20px;
+	box-shadow: 0 0 4px var(--grey);
+	transition: 0.2s;
+}
+
+.dashboard .greetings:hover {
+	box-shadow: 0 0 10px var(--grey);
+	transition: 0.2s;
+}
+
+.dashboard .greetings .welcome {
+	font-weight: 500;
+	font-size: 0.9em;
+	color: var(--grey);
+}
+
+.dashboard .greetings .name {
+	font-weight: 800;
+	font-size: 2em;
+}
+
+.dashboard .greetings .balances h3 {
+	font-size: 1em;
+	/* font-weight: 300; */
+	color: #fff;
+}
+
+.dashboard .greetings .balances {
+	margin-top: 15px;
+	background: url('../../assets/blue-gradient-bg.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	border-radius: 15px;
+	padding: 10px;
+	width: 100%;
+}
+
+.dashboard .greetings .balances section {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.curr {
+	background-color: #fff;
+	color: var(--db-dark);
+	padding: 1px 5px;
+	border-radius: 10px;
+}
+
+.dashboard .greetings .balances .balance {
+	border-radius: var(--br);
+	/* padding: 8px 15px; */
+	margin-top: 10px;
+	color: #fff;
+	margin-right: 12px;
+}
+
+.dashboard .greetings .balances .balance span {
+	font-size: 0.8em;
+	margin: 0;
+}
+
+.dashboard .greetings .balances .balance p {
+	font-size: 2em;
+	font-weight: 900;
+	margin: 0;
+}
+
+.dashboard .edit .edit-header {
+	padding: 20px 0;
+	padding-left: 20px;
+}
+
+.dashboard .edit .edit-header h3 {
+	font-size: 1.4em;
+	font-weight: 800;
+}
+
+.dashboard .products-added {
+	background-color: #fff;
+	border-radius: var(--br);
+	padding: 20px;
+	/* box-shadow: 0 0 4px var(--grey); */
+	margin-top: 25px;
+	transition: 0.2s;
+}
+
+.dashboard .products-added:hover {
+	box-shadow: 0 0 8px var(--grey);
+	transition: 0.2s;
+}
+
+.dashboard .products-added h2 {
+	margin-bottom: 10px;
+}
+
+.dashboard .products-added .close-btn {
+	margin-right: 10px;
+}
+
+.dashboard .products-added button {
+	color: #fff;
+	font-weight: bold;
+	padding: 8px 16px;
+	border-radius: var(--br);
+	border: none;
+	transition: 0.2s;
+	background: var(--db);
+	background: url('../../assets/blue-gradient-bg.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.dashboard .products-added button:hover {
+	opacity: 0.8;
+	cursor: pointer;
+	transition: 0.2s;
+}
+
+.add-product-btn {
+	margin-right: 10px;
+}
+
+.dashboard .products-added label {
+	font-size: 0.9em;
+}
+
+.dashboard .your-products {
+	padding-top: 20px;
+}
+
+.dashboard .your-products p {
+	font-weight: bolder;
+}
+
+.dashboard .your-products .added-product {
+	padding: 10px 0;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	font-size: 0.9em;
+	text-align: left;
+}
+
+input#add-product-display-name,
+input#add-product-description,
+input#add-product-price {
+	padding: 10px;
+	border: 1px solid var(--grey);
+	border-radius: 8px;
+	margin-right: 10px;
+}
+
+.dashboard .edit .store {
+	background-color: #fff;
+	border-radius: var(--br);
+	padding: 20px;
+	/* box-shadow: 0 0 4px var(--grey); */
+	transition: 0.2s;
+}
+
+.dashboard .edit .store:hover {
+	box-shadow: 0 0 8px var(--grey);
+	transition: 0.2s;
+}
+
+.dashboard .edit .store header {
+	position: relative;
+}
+
+.dashboard .edit .store header .banner-wrapper {
+	overflow: hidden;
+	width: 100%;
+	height: 150px;
+	background-color: red;
+	border-radius: 8px;
+}
+
+.dashboard .edit .store header .banner-wrapper img {
+	/* If any */
+	width: 100%;
+	height: auto;
+	display: inline-block;
+	margin-top: -270px;
+}
+
+.dashboard .edit .store header .circle {
+	background-color: #fff;
+	border-radius: 50%;
+	position: absolute;
+	top: 80px;
+	left: 60px;
+	padding: 4px;
+	box-shadow: 0 0 8px var(--shadow);
+}
+
+.dashboard .edit .store header .store-profile-image-wrapper {
+	width: 100px;
+	height: 100px;
+	overflow: hidden;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	border-radius: 50%;
+}
+
+.dashboard .edit .store header .store-profile-image {
+	width: 150px;
+}
+
+.dashboard .edit .store header .store-no-image {
+	width: 80px;
+	height: 80px;
+	background-color: var(--placeholder);
+	border-radius: 50%;
+}
+
+.dashboard .edit .store header .btn-add-store-image,
+.dashboard .edit .store header button {
+	position: relative;
+	background-color: var(--db);
+	color: #fff;
+	padding: 8px 14px;
+	border-radius: var(--br);
+	font-weight: bold;
+	transition: 0.2s;
+	border: none;
+	margin-left: 20px;
+	background: url('../../assets/blue-gradient-bg.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+}
+
+.dashboard .edit .store header .btn-add-store-image:hover,
+.dashboard .edit .store header button:hover {
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.2s;
+}
+
+.dashboard .edit .store header .btn-add-store-image input,
+.dashboard .edit .store header button input {
+	opacity: 0;
+	position: absolute;
+	left: 0;
+}
+
+.dashboard .edit .store header .store-display-name {
+	font-weight: 900;
+	font-size: 1.9em;
+}
+
+.dashboard .edit .store header .header-footer {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	padding: 50px 20px;
+}
+
+.dashboard .edit .store main {
+	display: flex;
+	justify-content: center;
+	gap: 40px;
+}
+
+.dashboard .edit .store main .store-main-left {
+	/* background-color: gold; */
+	width: 40%;
+}
+
+.dashboard .edit .store main .store-main-left select {
+	padding: 10px;
+	border: 1px solid var(--grey);
+	border-radius: 8px;
+	display: block;
+	width: 100%;
+}
+
+.dashboard .edit .store main .store-main-left .product {
+	margin: 15px 0;
+	text-align: center;
+}
+
+.dashboard .edit .store main .store-main-left .product h4 {
+	font-weight: bold;
+	font-size: 1.2em;
+}
+
+.dashboard .edit .store main .store-main-left .product .description {
+	color: var(--grey);
+	font-size: 1em;
+	margin: 6px 0;
+}
+
+.dashboard .edit .store main .store-main-left .product .price {
+	font-size: 1.8em;
+	font-weight: 900;
+}
+
+.dashboard .edit .store main .store-main-left .product img {
+	border-radius: 8px;
+	width: 300px;
+	height: auto;
+	margin-top: 15px;
+}
+
+.dashboard .edit .store main .store-main-right {
+	width: 50%;
+}
+
+.dashboard .edit .store main .store-main-right label[for=email] {
+	font-weight: 500;
+	font-size: 0.9em;
+}
+
+.dashboard .edit .store main .store-main-right input[type=text] {
+	padding: 10px;
+	border: 1px solid var(--grey);
+	border-radius: 8px;
+	display: block;
+	width: 100%;
+	margin-top: 5px;
+}
+
+.payment-types {
+	margin-top: 8px;
+}
+
+.dashboard .edit .store main .store-main-right .pay-btn {
+	color: #fff;
+	font-weight: bold;
+	border: none;
+	transition: 0.2s;
+	display: block;
+	width: 70%;
+	margin: 0 auto;
+	margin-top: 15px;
+	background-color: var(--db);
+	color: #fff;
+	padding: 6px 9px;
+	border-radius: 8px;
+}
+
+.dashboard .edit .store main .store-main-right .pay-btn:hover {
+	opacity: 0.8;
+	cursor: pointer;
+	transition: 0.2s;
+	color: var(--db);
+	background-color: #fff;
+	box-shadow: 0 0 10px var(--grey);
+}
+
+.dashboard .disburse {
+	padding: 20px;
+	background: url('../../assets/footer.svg');
+	background-repeat: no-repeat;
+	background-size: 520px;
+	background-position: 100% 100%;
+}
+
+.dashboard .disburse h2 {
+	font-weight: 900;
+}
+
+.dashboard .transfer-btn {
+	color: #fff;
+	padding: 8px 14px;
+	border-radius: var(--br);
+	font-weight: bold;
+	transition: 0.2s;
+	border: none;
+	background: url('../../assets/blue-gradient-bg.svg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	margin-top: 10px;
+}
+
+.dashboard .transfer-btn:hover {
+	cursor: pointer;
+	opacity: 0.8;
+	transition: 0.2s;
+}
+
+.greetings-main {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* background-color: gold; */
+	gap: 0;
+}
+
+.disburse section {
+	margin: 30px 0 50px 0;
+}
+
+.disburse label {
+	display: inline-block;
+	width: 10em;
+	color: #858383;
+	font-size: 0.9em;
+}
+
+.disburse section div {
+	margin: 10px 0;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.disburse section input {
+	border-radius: 10px;
+	border: 1px solid var(--placeholder);
+	padding: 8px 16px;
+	display: inline-block;
+	width: 20em;
+}
+
+.disburse section small {
+	font-size: 0.7em;
+	color: #858383;
+	border: 1px solid #858383;
+	border-radius: 20px;
+	padding: 3px 12px;
+}
+
+.lg {
+	width: 50px;
+	animation: rotation 0.6s infinite linear;
+}
+
+.loading-container {
+	display: block;
+}
+
+@keyframes rotation {
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(359deg);
+	}
+}
+
+@media only screen and (max-width: 400px) {
+	body {
+		/* background-color: gold; */
+	}
+
+	.dashboard .edit .store main {
+		display: block;
+	}
+
+	img {
+		width: auto;
+		height: auto;
+	}
+
+	.dashboard .buttons button {
+		display: block;
+		margin-bottom: 30px;
+	}
+
+	.dashboard .greetings .balances section {
+		display: block;
+	}
+
+
+	.greetings-main {
+		display: flex;
+		flex-direction: column;
+		gap: 20px;
+		align-items: center;
+	}
+}
