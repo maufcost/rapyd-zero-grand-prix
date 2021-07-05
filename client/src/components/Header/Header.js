@@ -2,7 +2,7 @@ import React from 'react';
 import { navigate } from '@reach/router';
 
 import RapydZeroLogo from '../../assets/rzero2.svg';
-import DefaultUser from '../../assets/default-user-2.png';
+import DefaultUser from '../../assets/default-user.png';
 
 import './Header.css';
 

@@ -45,10 +45,17 @@ class Dashboard extends React.Component {
             selectedBanner: null,
             user: {
                 email: 'michaelscott@dundermifflin.com',
+<<<<<<< HEAD
                 displayName: 'Marcus Figs',
                 balanceNative: 422.09,
                 balanceBTC: 0.00072,
                 balanceETH: 0.0185,
+=======
+                displayName: 'Mauricio Costa',
+                balanceNative: 131.92,
+                balanceBTC: 0.00001,
+                balanceETH: 0.000025,
+>>>>>>> efe09a97b8cd5e453320e300add028a711c17caf
                 store: {
                     displayName: 'Arabic Coffee by MC',
                     storeProfileImage: DefaultStoreImage,
@@ -211,6 +218,7 @@ class Dashboard extends React.Component {
         }
     }
 
+<<<<<<< HEAD
 	async transferMoney() {
 		this.setState({ loadingDisburse: true });
 		await axios.get(`${DOMAIN}/disburse`, {
@@ -220,6 +228,11 @@ class Dashboard extends React.Component {
 		.then(res => {
 			// console.log(res);
 			// Update state of disburse if successful.
+=======
+	transferMoney() {
+		this.setState({ loadingDisburse: true });
+		setTimeout(() => {
+>>>>>>> efe09a97b8cd5e453320e300add028a711c17caf
 			this.setState({
 				loadingDisburse: false,
 				transferSuccess: true,
@@ -227,7 +240,11 @@ class Dashboard extends React.Component {
 				rapydWalletNumber: '',
 				transferAmount: ''
 			});
+<<<<<<< HEAD
 		});
+=======
+		}, 3000);
+>>>>>>> efe09a97b8cd5e453320e300add028a711c17caf
 	}
 
     render() {
